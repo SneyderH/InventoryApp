@@ -32,19 +32,38 @@ namespace InventarioApp
         {
             tabControl1 = new TabControl();
             tabInventory = new TabPage();
-            txtSearch = new TextBox();
-            btnDelete = new Button();
-            btnEdit = new Button();
-            btnAdd = new Button();
             dgvProducts = new DataGridView();
             panel1 = new Panel();
-            tabVenta = new TabPage();
-            tabHistory = new TabPage();
             lblFilter = new Label();
+            txtSearch = new TextBox();
+            btnAdd = new Button();
+            btnDelete = new Button();
+            btnEdit = new Button();
+            tabVenta = new TabPage();
+            gbScannedProduct = new GroupBox();
+            lblStockSell = new Label();
+            lblPriceSell = new Label();
+            lblNameSell = new Label();
+            lblStock = new Label();
+            lblPrice = new Label();
+            lblProductName = new Label();
+            dgvShoppingCart = new DataGridView();
+            panel2 = new Panel();
+            btnCancelItem = new Button();
+            lblTotal = new Label();
+            txtBarCodeSale = new TextBox();
+            label4 = new Label();
+            btnCancelSale = new Button();
+            btnAccept = new Button();
+            tabHistory = new TabPage();
             tabControl1.SuspendLayout();
             tabInventory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             panel1.SuspendLayout();
+            tabVenta.SuspendLayout();
+            gbScannedProduct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvShoppingCart).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -56,8 +75,9 @@ namespace InventarioApp
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(1427, 517);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // tabInventory
             // 
@@ -66,49 +86,10 @@ namespace InventarioApp
             tabInventory.Location = new Point(4, 29);
             tabInventory.Name = "tabInventory";
             tabInventory.Padding = new Padding(3);
-            tabInventory.Size = new Size(792, 417);
+            tabInventory.Size = new Size(1419, 484);
             tabInventory.TabIndex = 0;
             tabInventory.Text = "Inventario";
             tabInventory.UseVisualStyleBackColor = true;
-            // 
-            // txtSearch
-            // 
-            txtSearch.Location = new Point(551, 41);
-            txtSearch.Margin = new Padding(5);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(197, 27);
-            txtSearch.TabIndex = 4;
-            txtSearch.TextChanged += txtSearch_TextChanged;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(357, 22);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(155, 65);
-            btnDelete.TabIndex = 3;
-            btnDelete.Text = "Eliminar";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnEdit
-            // 
-            btnEdit.Location = new Point(188, 22);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(163, 65);
-            btnEdit.TabIndex = 2;
-            btnEdit.Text = "Editar";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Location = new Point(14, 22);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(168, 65);
-            btnAdd.TabIndex = 1;
-            btnAdd.Text = "Agregar";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
             // 
             // dgvProducts
             // 
@@ -121,7 +102,7 @@ namespace InventarioApp
             dgvProducts.ReadOnly = true;
             dgvProducts.RowHeadersWidth = 51;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.Size = new Size(786, 298);
+            dgvProducts.Size = new Size(1413, 365);
             dgvProducts.TabIndex = 0;
             // 
             // panel1
@@ -134,44 +115,250 @@ namespace InventarioApp
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(786, 113);
+            panel1.Size = new Size(1413, 113);
             panel1.TabIndex = 5;
+            // 
+            // lblFilter
+            // 
+            lblFilter.Anchor = AnchorStyles.Right;
+            lblFilter.AutoSize = true;
+            lblFilter.Location = new Point(1176, 15);
+            lblFilter.Name = "lblFilter";
+            lblFilter.Size = new Size(52, 20);
+            lblFilter.TabIndex = 5;
+            lblFilter.Text = "Buscar";
+            // 
+            // txtSearch
+            // 
+            txtSearch.Anchor = AnchorStyles.Right;
+            txtSearch.Location = new Point(1104, 41);
+            txtSearch.Margin = new Padding(5);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(197, 27);
+            txtSearch.TabIndex = 4;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            btnAdd.Location = new Point(120, 22);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(168, 65);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "AGREGAR";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDelete.Location = new Point(684, 22);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(155, 65);
+            btnDelete.TabIndex = 3;
+            btnDelete.Text = "ELIMINAR";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEdit.Location = new Point(402, 22);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(163, 65);
+            btnEdit.TabIndex = 2;
+            btnEdit.Text = "EDITAR";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // tabVenta
             // 
+            tabVenta.Controls.Add(gbScannedProduct);
+            tabVenta.Controls.Add(dgvShoppingCart);
+            tabVenta.Controls.Add(panel2);
             tabVenta.Location = new Point(4, 29);
             tabVenta.Name = "tabVenta";
             tabVenta.Padding = new Padding(3);
-            tabVenta.Size = new Size(792, 417);
+            tabVenta.Size = new Size(1419, 484);
             tabVenta.TabIndex = 1;
             tabVenta.Text = "Venta";
             tabVenta.UseVisualStyleBackColor = true;
+            // 
+            // gbScannedProduct
+            // 
+            gbScannedProduct.Controls.Add(lblStockSell);
+            gbScannedProduct.Controls.Add(lblPriceSell);
+            gbScannedProduct.Controls.Add(lblNameSell);
+            gbScannedProduct.Controls.Add(lblStock);
+            gbScannedProduct.Controls.Add(lblPrice);
+            gbScannedProduct.Controls.Add(lblProductName);
+            gbScannedProduct.Dock = DockStyle.Top;
+            gbScannedProduct.Location = new Point(3, 3);
+            gbScannedProduct.Name = "gbScannedProduct";
+            gbScannedProduct.Size = new Size(1413, 120);
+            gbScannedProduct.TabIndex = 9;
+            gbScannedProduct.TabStop = false;
+            gbScannedProduct.Text = "groupBox1";
+            // 
+            // lblStockSell
+            // 
+            lblStockSell.AutoSize = true;
+            lblStockSell.Location = new Point(1302, 76);
+            lblStockSell.Name = "lblStockSell";
+            lblStockSell.Size = new Size(50, 20);
+            lblStockSell.TabIndex = 5;
+            lblStockSell.Text = "label1";
+            // 
+            // lblPriceSell
+            // 
+            lblPriceSell.AutoSize = true;
+            lblPriceSell.Location = new Point(669, 76);
+            lblPriceSell.Name = "lblPriceSell";
+            lblPriceSell.Size = new Size(50, 20);
+            lblPriceSell.TabIndex = 4;
+            lblPriceSell.Text = "label1";
+            // 
+            // lblNameSell
+            // 
+            lblNameSell.AutoSize = true;
+            lblNameSell.Location = new Point(70, 76);
+            lblNameSell.Name = "lblNameSell";
+            lblNameSell.Size = new Size(50, 20);
+            lblNameSell.TabIndex = 3;
+            lblNameSell.Text = "label1";
+            // 
+            // lblStock
+            // 
+            lblStock.AutoSize = true;
+            lblStock.Location = new Point(1302, 40);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(53, 20);
+            lblStock.TabIndex = 2;
+            lblStock.Text = "STOCK";
+            // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.Location = new Point(661, 40);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(58, 20);
+            lblPrice.TabIndex = 1;
+            lblPrice.Text = "PRECIO";
+            // 
+            // lblProductName
+            // 
+            lblProductName.AutoSize = true;
+            lblProductName.Location = new Point(12, 40);
+            lblProductName.Name = "lblProductName";
+            lblProductName.Size = new Size(180, 20);
+            lblProductName.TabIndex = 0;
+            lblProductName.Text = "NOMBRE DEL PRODUCTO";
+            // 
+            // dgvShoppingCart
+            // 
+            dgvShoppingCart.AllowUserToAddRows = false;
+            dgvShoppingCart.AllowUserToDeleteRows = false;
+            dgvShoppingCart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvShoppingCart.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvShoppingCart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvShoppingCart.Location = new Point(3, 129);
+            dgvShoppingCart.Name = "dgvShoppingCart";
+            dgvShoppingCart.ReadOnly = true;
+            dgvShoppingCart.RowHeadersWidth = 51;
+            dgvShoppingCart.ShowCellToolTips = false;
+            dgvShoppingCart.ShowEditingIcon = false;
+            dgvShoppingCart.Size = new Size(1413, 119);
+            dgvShoppingCart.TabIndex = 4;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnCancelItem);
+            panel2.Controls.Add(lblTotal);
+            panel2.Controls.Add(txtBarCodeSale);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(btnCancelSale);
+            panel2.Controls.Add(btnAccept);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(3, 254);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1413, 227);
+            panel2.TabIndex = 8;
+            // 
+            // btnCancelItem
+            // 
+            btnCancelItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelItem.Location = new Point(864, 171);
+            btnCancelItem.Name = "btnCancelItem";
+            btnCancelItem.Size = new Size(166, 44);
+            btnCancelItem.TabIndex = 7;
+            btnCancelItem.Text = "QUITAR ITEM";
+            btnCancelItem.UseVisualStyleBackColor = true;
+            // 
+            // lblTotal
+            // 
+            lblTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotal.AutoSize = true;
+            lblTotal.Location = new Point(1324, 94);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(25, 20);
+            lblTotal.TabIndex = 2;
+            lblTotal.Text = "$0";
+            // 
+            // txtBarCodeSale
+            // 
+            txtBarCodeSale.Location = new Point(12, 16);
+            txtBarCodeSale.Name = "txtBarCodeSale";
+            txtBarCodeSale.Size = new Size(0, 27);
+            txtBarCodeSale.TabIndex = 3;
+            txtBarCodeSale.KeyDown += txtBarCodeSale_KeyDown;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Location = new Point(1314, 63);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 1;
+            label4.Text = "TOTAL";
+            // 
+            // btnCancelSale
+            // 
+            btnCancelSale.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelSale.Location = new Point(1059, 171);
+            btnCancelSale.Name = "btnCancelSale";
+            btnCancelSale.Size = new Size(154, 44);
+            btnCancelSale.TabIndex = 6;
+            btnCancelSale.Text = "CANCELAR VENTA";
+            btnCancelSale.UseVisualStyleBackColor = true;
+            // 
+            // btnAccept
+            // 
+            btnAccept.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAccept.Location = new Point(1239, 171);
+            btnAccept.Name = "btnAccept";
+            btnAccept.Size = new Size(158, 44);
+            btnAccept.TabIndex = 5;
+            btnAccept.Text = "ACEPTAR";
+            btnAccept.UseVisualStyleBackColor = true;
             // 
             // tabHistory
             // 
             tabHistory.Location = new Point(4, 29);
             tabHistory.Name = "tabHistory";
             tabHistory.Padding = new Padding(3);
-            tabHistory.Size = new Size(792, 417);
+            tabHistory.Size = new Size(1419, 484);
             tabHistory.TabIndex = 2;
             tabHistory.Text = "Histórico de Ventas";
             tabHistory.UseVisualStyleBackColor = true;
-            // 
-            // lblFilter
-            // 
-            lblFilter.AutoSize = true;
-            lblFilter.Location = new Point(623, 15);
-            lblFilter.Name = "lblFilter";
-            lblFilter.Size = new Size(52, 20);
-            lblFilter.TabIndex = 5;
-            lblFilter.Text = "Buscar";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1427, 517);
             Controls.Add(tabControl1);
+            KeyPreview = true;
             Name = "Form1";
             Text = "Sistema de Inventario";
             Load += Form1_Load;
@@ -180,6 +367,12 @@ namespace InventarioApp
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            tabVenta.ResumeLayout(false);
+            gbScannedProduct.ResumeLayout(false);
+            gbScannedProduct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvShoppingCart).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -196,5 +389,20 @@ namespace InventarioApp
         private Button btnAdd;
         private Panel panel1;
         private Label lblFilter;
+        private Label lblTotal;
+        private Label label4;
+        private TextBox txtBarCodeSale;
+        private DataGridView dgvShoppingCart;
+        private Button btnCancelSale;
+        private Button btnAccept;
+        private Button btnCancelItem;
+        private GroupBox gbScannedProduct;
+        private Label lblStock;
+        private Label lblPrice;
+        private Label lblProductName;
+        private Panel panel2;
+        private Label lblNameSell;
+        private Label lblStockSell;
+        private Label lblPriceSell;
     }
 }
