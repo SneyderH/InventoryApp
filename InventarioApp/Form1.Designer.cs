@@ -203,34 +203,34 @@ namespace InventarioApp
             // lblStockSell
             // 
             lblStockSell.AutoSize = true;
-            lblStockSell.Location = new Point(1302, 76);
+            lblStockSell.Location = new Point(1314, 76);
             lblStockSell.Name = "lblStockSell";
-            lblStockSell.Size = new Size(50, 20);
+            lblStockSell.Size = new Size(15, 20);
             lblStockSell.TabIndex = 5;
-            lblStockSell.Text = "label1";
+            lblStockSell.Text = "-";
             // 
             // lblPriceSell
             // 
             lblPriceSell.AutoSize = true;
-            lblPriceSell.Location = new Point(669, 76);
+            lblPriceSell.Location = new Point(681, 76);
             lblPriceSell.Name = "lblPriceSell";
-            lblPriceSell.Size = new Size(50, 20);
+            lblPriceSell.Size = new Size(15, 20);
             lblPriceSell.TabIndex = 4;
-            lblPriceSell.Text = "label1";
+            lblPriceSell.Text = "-";
             // 
             // lblNameSell
             // 
             lblNameSell.AutoSize = true;
-            lblNameSell.Location = new Point(70, 76);
+            lblNameSell.Location = new Point(84, 76);
             lblNameSell.Name = "lblNameSell";
-            lblNameSell.Size = new Size(50, 20);
+            lblNameSell.Size = new Size(15, 20);
             lblNameSell.TabIndex = 3;
-            lblNameSell.Text = "label1";
+            lblNameSell.Text = "-";
             // 
             // lblStock
             // 
             lblStock.AutoSize = true;
-            lblStock.Location = new Point(1302, 40);
+            lblStock.Location = new Point(1296, 40);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(53, 20);
             lblStock.TabIndex = 2;
@@ -341,6 +341,7 @@ namespace InventarioApp
             btnAccept.TabIndex = 5;
             btnAccept.Text = "ACEPTAR";
             btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.Click += btnAccept_Click;
             // 
             // tabHistory
             // 

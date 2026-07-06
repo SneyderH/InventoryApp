@@ -155,6 +155,8 @@ namespace InventarioApp
                     });
                 }
 
+                decimal total = _shoppingCart.Sum(s => s.Subtotal);
+                lblTotal.Text = total.ToString("C0");
                 ShoppingCartRefresh();
             }
             else
@@ -171,8 +173,40 @@ namespace InventarioApp
 
 
 
-
         #endregion
 
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+
+            if (_shoppingCart.Count == 0)
+            {
+                MessageBox.Show("No hay productos en el carrito de compras.");
+                return;
+            }
+
+            int newIdTransaction = _sellService.GetNextTransactionId();
+
+            foreach (Sale s in _shoppingCart)
+            {
+                s.SaleTransactionId = newIdTransaction;
+            }
+
+            bool response = _sellService.SaveSales(_shoppingCart);
+
+            if (response == false)
+            {
+                MessageBox.Show($"No hay suficiente stock para algún producto seleccionado");
+                return;
+            }
+
+            MessageBox.Show("Venta realizada con éxito.");
+            _shoppingCart.Clear();
+            dgvShoppingCart.DataSource = null;
+            LoadProducts();
+            lblTotal.Text = (0m).ToString("c0");
+            lblNameSell.Text = "-";
+            lblPriceSell.Text = "-";
+            lblStockSell.Text = "-";
+        }
     }
 }

@@ -11,13 +11,15 @@ namespace InventarioApp.Models
         public int Id { get; set; }
 
         public int ProductId { get; set; }
-        public Product? Product { get; set; } //Relación
+        public Product? Product { get; set; }
 
-        public string ProductName { get; set; } = string.Empty; // Se guarda copia por si el producto se elimina después
+        public string ProductName { get; set; } = string.Empty;
         public int Amount { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal Subtotal => Amount * UnitPrice;
 
         public DateTime Date { get; set; } = DateTime.Now;
+
+        public int SaleTransactionId { get; set; }
     }
 }

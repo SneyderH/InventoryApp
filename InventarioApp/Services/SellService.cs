@@ -15,9 +15,52 @@ namespace InventarioApp.Services
         public Product? SaleResult(string code)
         {
             using var context = new InventoryContext();
-            Debug.WriteLine(context);
             return context.Products
                 .FirstOrDefault(p => p.BarCode == code);
+        }
+
+        public int GetNextTransactionId()
+        {
+            using var context = new InventoryContext();
+            
+            if (!context.Sales.Any())
+            {
+                return 1;
+            }
+
+            return context.Sales.Max(s => s.SaleTransactionId) + 1;
+
+        }
+
+        public bool SaveSales(List<Sale> sales)
+        {
+            using var context = new InventoryContext();
+
+            foreach (var sale in sales)
+            {
+                var product = context.Products.Find(sale.ProductId);
+
+                if (product != null)
+                {
+                    if (product.Stock < sale.Amount)
+                    {
+                        return false;
+                    }
+
+                    product.Stock -= sale.Amount;
+                    sale.ProductName = product.Name;
+                    sale.UnitPrice = product.UnitPrice;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+
+            context.Sales.AddRange(sales);
+            context.SaveChanges();
+            return true;
         }
     }
 }
