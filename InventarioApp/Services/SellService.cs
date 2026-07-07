@@ -62,5 +62,34 @@ namespace InventarioApp.Services
             context.SaveChanges();
             return true;
         }
+
+        public List<SaleSummary> GetTodaySalesSummary()
+        {
+            using var context = new InventoryContext();
+
+            var todaySales = context.Sales
+                .Where(s => s.Date.Date == DateTime.Today)
+                .ToList();
+
+            return todaySales
+                .GroupBy(s => s.SaleTransactionId)
+                .Select(g => new SaleSummary
+                {
+                    SaleTransactionId = g.Key,
+                    Date = g.Min(s => s.Date),
+                    Total = g.Sum(s => s.Subtotal)
+                })
+                .OrderByDescending(s => s.Date)
+                .ToList();
+        }
+
+        public List<Sale> GetSaleDetails (int saleTransactionId)
+        {
+            using var context = new InventoryContext();
+            return context.Sales
+                .Where(s => s.SaleTransactionId == saleTransactionId)
+                .OrderBy(s => s.Id)
+                .ToList();
+        }
     }
 }

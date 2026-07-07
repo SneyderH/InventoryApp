@@ -114,6 +114,7 @@ namespace InventarioApp
         {
             tabVenta.Enabled = tabControl1.SelectedIndex == 1;
             txtBarCodeSale.Focus();
+            dgvMaster.DataSource = _sellService.GetTodaySalesSummary();
         }
 
         private void txtBarCodeSale_KeyDown(object sender, KeyEventArgs e)
@@ -175,6 +176,7 @@ namespace InventarioApp
 
         #endregion
 
+        #region BOTONES
         private void btnAccept_Click(object sender, EventArgs e)
         {
 
@@ -207,6 +209,64 @@ namespace InventarioApp
             lblNameSell.Text = "-";
             lblPriceSell.Text = "-";
             lblStockSell.Text = "-";
+        }
+        private void btnCancelSale_Click(object sender, EventArgs e)
+        {
+            _shoppingCart.Clear();
+            dgvShoppingCart.DataSource = null;
+            LoadProducts();
+            lblTotal.Text = (0m).ToString("c0");
+            lblNameSell.Text = "-";
+            lblPriceSell.Text = "-";
+            lblStockSell.Text = "-";
+            txtBarCodeSale.Focus();
+        }
+
+        private void btnCancelItem_Click(object sender, EventArgs e)
+        {
+            if (dgvShoppingCart.CurrentRow != null || dgvShoppingCart.CurrentRow.DataBoundItem is not Sale selectedItem)
+            {
+                MessageBox.Show("Selecciona un producto para cancelar.");
+                return;
+            }
+
+            var confirmation = MessageBox.Show(
+                $"¿Seguro que desea eliminar '{selectedItem.ProductName}'?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmation == DialogResult.Yes)
+            {
+                _shoppingCart.Remove(selectedItem);
+                decimal total = _shoppingCart.Sum(s => s.Subtotal);
+                lblTotal.Text = total.ToString("C0");
+                ShoppingCartRefresh();
+                txtBarCodeSale.Focus();
+
+            }
+        }
+
+        #endregion
+
+
+        #region HISTÓRICO DE VENTA
+
+
+
+        #endregion
+
+        private void dgvMaster_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvMaster.CurrentRow != null || dgvMaster.CurrentRow.DataBoundItem is not SaleSummary selectedSale)
+            {
+                return;
+            }
+
+            var details = _sellService.GetSaleDetails(selectedSale.SaleTransactionId);
+
+            dgvMaster.DataSource = null;
+            dgvMaster.DataSource = details;
         }
     }
 }

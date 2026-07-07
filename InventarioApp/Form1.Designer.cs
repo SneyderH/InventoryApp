@@ -56,6 +56,12 @@ namespace InventarioApp
             btnCancelSale = new Button();
             btnAccept = new Button();
             tabHistory = new TabPage();
+            dgvDetails = new DataGridView();
+            panel3 = new Panel();
+            lblTotalClosing = new Label();
+            label1 = new Label();
+            btnRegisterClosing = new Button();
+            dgvMaster = new DataGridView();
             tabControl1.SuspendLayout();
             tabInventory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
@@ -64,6 +70,10 @@ namespace InventarioApp
             gbScannedProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvShoppingCart).BeginInit();
             panel2.SuspendLayout();
+            tabHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDetails).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMaster).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -293,6 +303,7 @@ namespace InventarioApp
             btnCancelItem.TabIndex = 7;
             btnCancelItem.Text = "QUITAR ITEM";
             btnCancelItem.UseVisualStyleBackColor = true;
+            btnCancelItem.Click += btnCancelItem_Click;
             // 
             // lblTotal
             // 
@@ -331,6 +342,7 @@ namespace InventarioApp
             btnCancelSale.TabIndex = 6;
             btnCancelSale.Text = "CANCELAR VENTA";
             btnCancelSale.UseVisualStyleBackColor = true;
+            btnCancelSale.Click += btnCancelSale_Click;
             // 
             // btnAccept
             // 
@@ -345,6 +357,9 @@ namespace InventarioApp
             // 
             // tabHistory
             // 
+            tabHistory.Controls.Add(dgvDetails);
+            tabHistory.Controls.Add(panel3);
+            tabHistory.Controls.Add(dgvMaster);
             tabHistory.Location = new Point(4, 29);
             tabHistory.Name = "tabHistory";
             tabHistory.Padding = new Padding(3);
@@ -352,6 +367,72 @@ namespace InventarioApp
             tabHistory.TabIndex = 2;
             tabHistory.Text = "Histórico de Ventas";
             tabHistory.UseVisualStyleBackColor = true;
+            // 
+            // dgvDetails
+            // 
+            dgvDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDetails.Dock = DockStyle.Fill;
+            dgvDetails.Location = new Point(3, 200);
+            dgvDetails.Name = "dgvDetails";
+            dgvDetails.RowHeadersWidth = 51;
+            dgvDetails.Size = new Size(1413, 156);
+            dgvDetails.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(lblTotalClosing);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(btnRegisterClosing);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(3, 356);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1413, 125);
+            panel3.TabIndex = 1;
+            // 
+            // lblTotalClosing
+            // 
+            lblTotalClosing.AutoSize = true;
+            lblTotalClosing.Location = new Point(66, 76);
+            lblTotalClosing.Name = "lblTotalClosing";
+            lblTotalClosing.Size = new Size(15, 20);
+            lblTotalClosing.TabIndex = 2;
+            lblTotalClosing.Text = "-";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(33, 40);
+            label1.Name = "label1";
+            label1.Size = new Size(92, 20);
+            label1.TabIndex = 1;
+            label1.Text = "Total del día";
+            // 
+            // btnRegisterClosing
+            // 
+            btnRegisterClosing.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRegisterClosing.Location = new Point(1168, 40);
+            btnRegisterClosing.Name = "btnRegisterClosing";
+            btnRegisterClosing.Size = new Size(224, 56);
+            btnRegisterClosing.TabIndex = 0;
+            btnRegisterClosing.Text = "CIERRE DE CAJA";
+            btnRegisterClosing.UseVisualStyleBackColor = true;
+            // 
+            // dgvMaster
+            // 
+            dgvMaster.AllowUserToAddRows = false;
+            dgvMaster.AllowUserToDeleteRows = false;
+            dgvMaster.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMaster.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvMaster.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMaster.Dock = DockStyle.Top;
+            dgvMaster.Location = new Point(3, 3);
+            dgvMaster.Name = "dgvMaster";
+            dgvMaster.RowHeadersWidth = 51;
+            dgvMaster.ShowCellToolTips = false;
+            dgvMaster.ShowEditingIcon = false;
+            dgvMaster.Size = new Size(1413, 197);
+            dgvMaster.TabIndex = 0;
+            dgvMaster.SelectionChanged += dgvMaster_SelectionChanged;
             // 
             // Form1
             // 
@@ -374,6 +455,11 @@ namespace InventarioApp
             ((System.ComponentModel.ISupportInitialize)dgvShoppingCart).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            tabHistory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDetails).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMaster).EndInit();
             ResumeLayout(false);
         }
 
@@ -405,5 +491,11 @@ namespace InventarioApp
         private Label lblNameSell;
         private Label lblStockSell;
         private Label lblPriceSell;
+        private DataGridView dgvMaster;
+        private DataGridView dgvDetails;
+        private Panel panel3;
+        private Label lblTotalClosing;
+        private Label label1;
+        private Button btnRegisterClosing;
     }
 }
