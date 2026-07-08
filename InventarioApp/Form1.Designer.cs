@@ -104,6 +104,8 @@ namespace InventarioApp
             // dgvProducts
             // 
             dgvProducts.AllowUserToAddRows = false;
+            dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.Dock = DockStyle.Fill;
             dgvProducts.Location = new Point(3, 116);
@@ -213,7 +215,7 @@ namespace InventarioApp
             // lblStockSell
             // 
             lblStockSell.AutoSize = true;
-            lblStockSell.Location = new Point(1314, 76);
+            lblStockSell.Location = new Point(1305, 76);
             lblStockSell.Name = "lblStockSell";
             lblStockSell.Size = new Size(15, 20);
             lblStockSell.TabIndex = 5;
@@ -222,7 +224,7 @@ namespace InventarioApp
             // lblPriceSell
             // 
             lblPriceSell.AutoSize = true;
-            lblPriceSell.Location = new Point(681, 76);
+            lblPriceSell.Location = new Point(661, 76);
             lblPriceSell.Name = "lblPriceSell";
             lblPriceSell.Size = new Size(15, 20);
             lblPriceSell.TabIndex = 4;
@@ -231,7 +233,7 @@ namespace InventarioApp
             // lblNameSell
             // 
             lblNameSell.AutoSize = true;
-            lblNameSell.Location = new Point(84, 76);
+            lblNameSell.Location = new Point(12, 76);
             lblNameSell.Name = "lblNameSell";
             lblNameSell.Size = new Size(15, 20);
             lblNameSell.TabIndex = 3;
@@ -370,11 +372,18 @@ namespace InventarioApp
             // 
             // dgvDetails
             // 
+            dgvDetails.AllowUserToAddRows = false;
+            dgvDetails.AllowUserToDeleteRows = false;
+            dgvDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDetails.Dock = DockStyle.Fill;
             dgvDetails.Location = new Point(3, 200);
             dgvDetails.Name = "dgvDetails";
+            dgvDetails.ReadOnly = true;
             dgvDetails.RowHeadersWidth = 51;
+            dgvDetails.ShowCellToolTips = false;
+            dgvDetails.ShowEditingIcon = false;
             dgvDetails.Size = new Size(1413, 156);
             dgvDetails.TabIndex = 2;
             // 
@@ -427,6 +436,7 @@ namespace InventarioApp
             dgvMaster.Dock = DockStyle.Top;
             dgvMaster.Location = new Point(3, 3);
             dgvMaster.Name = "dgvMaster";
+            dgvMaster.ReadOnly = true;
             dgvMaster.RowHeadersWidth = 51;
             dgvMaster.ShowCellToolTips = false;
             dgvMaster.ShowEditingIcon = false;

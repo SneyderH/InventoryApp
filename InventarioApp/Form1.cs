@@ -5,6 +5,8 @@ using InventarioApp.Services;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing.Text;
+using System.Net.WebSockets;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace InventarioApp
 {
@@ -35,7 +37,19 @@ namespace InventarioApp
             dgvProducts.DataSource = null;
             dgvProducts.DataSource = products;
 
-            //Resaltar stock bajo
+            #region FORMATOS DATAGRIDVIEW INVENTARIO
+            dgvProducts.Columns["Id"].Visible = false;
+            dgvProducts.Columns["CreationDate"].Visible = false;
+            dgvProducts.Columns["MinStock"].Visible = false;
+
+            dgvProducts.Columns["BarCode"].HeaderText = "Código de barra";
+            dgvProducts.Columns["Name"].HeaderText = "Nombre";
+            dgvProducts.Columns["Category"].HeaderText = "Categoría";
+            dgvProducts.Columns["UnitPrice"].HeaderText = "Precio Unitario";
+
+            dgvProducts.Columns["UnitPrice"].DefaultCellStyle.Format = "C0";
+            #endregion
+
             foreach (DataGridViewRow row in dgvProducts.Rows)
             {
                 var product = (Product)row.DataBoundItem;
@@ -115,6 +129,8 @@ namespace InventarioApp
             tabVenta.Enabled = tabControl1.SelectedIndex == 1;
             txtBarCodeSale.Focus();
             dgvMaster.DataSource = _sellService.GetTodaySalesSummary();
+            lblTotalClosing.Text = _sellService.GetTodaySalesSummary().Sum(s => s.Total).ToString("C0");
+
         }
 
         private void txtBarCodeSale_KeyDown(object sender, KeyEventArgs e)
@@ -163,6 +179,7 @@ namespace InventarioApp
             else
             {
                 MessageBox.Show("Producto no encontrado.");
+                txtBarCodeSale.Focus();
             }
         }
 
@@ -170,6 +187,21 @@ namespace InventarioApp
         {
             dgvShoppingCart.DataSource = null;
             dgvShoppingCart.DataSource = _shoppingCart;
+
+            #region FORMATOS DATAGRIDVIEW CARRITO DE COMPRAS
+            dgvShoppingCart.Columns["Id"].Visible = false;
+            dgvShoppingCart.Columns["ProductId"].Visible = false;
+            dgvShoppingCart.Columns["Product"].Visible = false;
+            dgvShoppingCart.Columns["SaleTransactionId"].Visible = false;
+
+            dgvShoppingCart.Columns["ProductName"].HeaderText = "Producto";
+            dgvShoppingCart.Columns["Amount"].HeaderText = "Cantidad";
+            dgvShoppingCart.Columns["UnitPrice"].HeaderText = "Precio Unitario";
+            dgvShoppingCart.Columns["Date"].HeaderText = "Fecha";
+
+            dgvShoppingCart.Columns["UnitPrice"].DefaultCellStyle.Format = "C0";
+            dgvShoppingCart.Columns["Subtotal"].DefaultCellStyle.Format = "C0";
+            #endregion
         }
 
 
@@ -249,24 +281,50 @@ namespace InventarioApp
 
         #endregion
 
-
         #region HISTÓRICO DE VENTA
-
-
-
-        #endregion
-
         private void dgvMaster_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvMaster.CurrentRow != null || dgvMaster.CurrentRow.DataBoundItem is not SaleSummary selectedSale)
+            if (dgvMaster.CurrentRow == null || dgvMaster.CurrentRow.DataBoundItem is not SaleSummary selectedSale)
             {
                 return;
             }
 
+
             var details = _sellService.GetSaleDetails(selectedSale.SaleTransactionId);
 
-            dgvMaster.DataSource = null;
-            dgvMaster.DataSource = details;
+            dgvDetails.DataSource = null;
+            dgvDetails.DataSource = details;
+
+            #region FORMATO DATAGRIDVIEWS
+
+            //DATAGRIDVIEW DETAILS
+            dgvDetails.Columns["Id"].Visible = false;
+            dgvDetails.Columns["ProductId"].Visible = false;
+            dgvDetails.Columns["Product"].Visible = false;
+
+            dgvDetails.Columns["SaleTransactionId"].DisplayIndex = 0;
+
+            dgvDetails.Columns["ProductName"].HeaderText = "Producto";
+            dgvDetails.Columns["Amount"].HeaderText = "Cantidad";
+            dgvDetails.Columns["UnitPrice"].HeaderText = "Precio Unitario";
+            dgvDetails.Columns["Date"].HeaderText = "Fecha";
+            dgvDetails.Columns["SaleTransactionId"].HeaderText = "# Venta";
+
+            dgvDetails.Columns["UnitPrice"].DefaultCellStyle.Format = "C0";
+            dgvDetails.Columns["Subtotal"].DefaultCellStyle.Format = "C0";
+
+
+            //DATAGRIDVIEW MASTER
+            dgvMaster.Columns["Date"].HeaderText = "Fecha";
+            dgvMaster.Columns["SaleTransactionId"].HeaderText = "# Venta";
+
+            dgvMaster.Columns["Total"].DefaultCellStyle.Format = "C0";
+
+            #endregion
         }
+
+        #endregion
+
+
     }
 }
