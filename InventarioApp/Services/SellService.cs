@@ -91,5 +91,15 @@ namespace InventarioApp.Services
                 .OrderBy(s => s.Id)
                 .ToList();
         }
+
+        public List<Sale> GetTodaySalesDetails()
+        {
+            using var context = new InventoryContext();
+
+            return context.Sales
+                .Where(s => s.Date.Date == DateTime.Today)
+                .OrderBy(s => s.SaleTransactionId)
+                .ToList();
+        }
     }
 }

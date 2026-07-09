@@ -425,6 +425,7 @@ namespace InventarioApp
             btnRegisterClosing.TabIndex = 0;
             btnRegisterClosing.Text = "CIERRE DE CAJA";
             btnRegisterClosing.UseVisualStyleBackColor = true;
+            btnRegisterClosing.Click += btnRegisterClosing_Click;
             // 
             // dgvMaster
             // 
@@ -453,6 +454,7 @@ namespace InventarioApp
             KeyPreview = true;
             Name = "Form1";
             Text = "Sistema de Inventario";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabInventory.ResumeLayout(false);

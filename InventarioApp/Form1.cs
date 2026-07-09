@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing.Text;
 using System.Net.WebSockets;
+using System.Text;
+using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace InventarioApp
@@ -14,6 +16,7 @@ namespace InventarioApp
     {
         private readonly ProductService _productService = new();
         private readonly SellService _sellService = new();
+        private readonly BackupService _backupService = new();
         private List<Sale> _shoppingCart = new List<Sale>();
 
         public Form1()
@@ -289,7 +292,6 @@ namespace InventarioApp
                 return;
             }
 
-
             var details = _sellService.GetSaleDetails(selectedSale.SaleTransactionId);
 
             dgvDetails.DataSource = null;
@@ -326,5 +328,69 @@ namespace InventarioApp
         #endregion
 
 
+        private void btnRegisterClosing_Click(object sender, EventArgs e)
+        {
+
+            if (dgvMaster.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay ventas registradas para el día de hoy.");
+                return;
+            }
+
+            var confirmation = MessageBox.Show(
+                $"¿Seguro que desea hacer el cierre de caja?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmation != DialogResult.Yes)
+            {
+                return;
+            }
+
+            var salesSummary = _sellService.GetTodaySalesSummary();
+            var selledProducts = _sellService.GetTodaySalesDetails();
+
+            var content = new StringBuilder();
+            content.AppendLine($"CIERRE DE CAJA - {DateTime.Today:dd/MM/yyyy}");
+            content.AppendLine(new string('=', 40));
+            content.AppendLine();
+
+            foreach (var sale in salesSummary)
+            {
+                content.AppendLine($"Venta #{sale.SaleTransactionId} - {sale.Date:hh:mm tt}");
+
+                var productsFromThisSale = selledProducts
+                    .Where(d => d.SaleTransactionId == sale.SaleTransactionId);
+
+                foreach (var product in productsFromThisSale)
+                {
+                    content.AppendLine($"  {product.ProductName} x{product.Amount} - {product.Subtotal:C0}");
+                }
+
+                content.AppendLine($"  Subtotal venta: {sale.Total:C0}");
+                content.AppendLine();
+            }
+
+            content.AppendLine(new string('=', 40));
+            content.AppendLine($"TOTAL DEL DÍA: {salesSummary.Sum(v => v.Total):C0}");
+
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Archivo de texto (*.txt)|*.txt";
+            saveDialog.FileName = $"CierreCaja_{DateTime.Today:yyyy-MM-dd}.txt";
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveDialog.FileName, content.ToString());
+                _backupService.CreateBackup();
+                MessageBox.Show("Cierre de caja generado correctamente.");
+
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _backupService.CreateBackup();
+        }
     }
 }
