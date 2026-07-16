@@ -27,6 +27,11 @@ namespace InventarioApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            using (var context = new InventoryContext())
+            {
+                context.Database.EnsureCreated();
+            }
+
             LoadProducts();
         }
 
@@ -39,6 +44,7 @@ namespace InventarioApp
 
             dgvProducts.DataSource = null;
             dgvProducts.DataSource = products;
+            GridStyle(dgvProducts);
 
             #region FORMATOS DATAGRIDVIEW INVENTARIO
             dgvProducts.Columns["Id"].Visible = false;
@@ -281,53 +287,6 @@ namespace InventarioApp
 
             }
         }
-
-        #endregion
-
-        #region HISTÓRICO DE VENTA
-        private void dgvMaster_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvMaster.CurrentRow == null || dgvMaster.CurrentRow.DataBoundItem is not SaleSummary selectedSale)
-            {
-                return;
-            }
-
-            var details = _sellService.GetSaleDetails(selectedSale.SaleTransactionId);
-
-            dgvDetails.DataSource = null;
-            dgvDetails.DataSource = details;
-
-            #region FORMATO DATAGRIDVIEWS
-
-            //DATAGRIDVIEW DETAILS
-            dgvDetails.Columns["Id"].Visible = false;
-            dgvDetails.Columns["ProductId"].Visible = false;
-            dgvDetails.Columns["Product"].Visible = false;
-
-            dgvDetails.Columns["SaleTransactionId"].DisplayIndex = 0;
-
-            dgvDetails.Columns["ProductName"].HeaderText = "Producto";
-            dgvDetails.Columns["Amount"].HeaderText = "Cantidad";
-            dgvDetails.Columns["UnitPrice"].HeaderText = "Precio Unitario";
-            dgvDetails.Columns["Date"].HeaderText = "Fecha";
-            dgvDetails.Columns["SaleTransactionId"].HeaderText = "# Venta";
-
-            dgvDetails.Columns["UnitPrice"].DefaultCellStyle.Format = "C0";
-            dgvDetails.Columns["Subtotal"].DefaultCellStyle.Format = "C0";
-
-
-            //DATAGRIDVIEW MASTER
-            dgvMaster.Columns["Date"].HeaderText = "Fecha";
-            dgvMaster.Columns["SaleTransactionId"].HeaderText = "# Venta";
-
-            dgvMaster.Columns["Total"].DefaultCellStyle.Format = "C0";
-
-            #endregion
-        }
-
-        #endregion
-
-
         private void btnRegisterClosing_Click(object sender, EventArgs e)
         {
 
@@ -388,9 +347,75 @@ namespace InventarioApp
             }
         }
 
+        #endregion
+
+        #region HISTÓRICO DE VENTA
+        private void dgvMaster_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvMaster.CurrentRow == null || dgvMaster.CurrentRow.DataBoundItem is not SaleSummary selectedSale)
+            {
+                return;
+            }
+
+            var details = _sellService.GetSaleDetails(selectedSale.SaleTransactionId);
+
+            dgvDetails.DataSource = null;
+            dgvDetails.DataSource = details;
+
+            #region FORMATO DATAGRIDVIEWS
+
+            //DATAGRIDVIEW DETAILS
+            dgvDetails.Columns["Id"].Visible = false;
+            dgvDetails.Columns["ProductId"].Visible = false;
+            dgvDetails.Columns["Product"].Visible = false;
+
+            dgvDetails.Columns["SaleTransactionId"].DisplayIndex = 0;
+
+            dgvDetails.Columns["ProductName"].HeaderText = "Producto";
+            dgvDetails.Columns["Amount"].HeaderText = "Cantidad";
+            dgvDetails.Columns["UnitPrice"].HeaderText = "Precio Unitario";
+            dgvDetails.Columns["Date"].HeaderText = "Fecha";
+            dgvDetails.Columns["SaleTransactionId"].HeaderText = "# Venta";
+
+            dgvDetails.Columns["UnitPrice"].DefaultCellStyle.Format = "C0";
+            dgvDetails.Columns["Subtotal"].DefaultCellStyle.Format = "C0";
+
+
+            //DATAGRIDVIEW MASTER
+            dgvMaster.Columns["Date"].HeaderText = "Fecha";
+            dgvMaster.Columns["SaleTransactionId"].HeaderText = "# Venta";
+
+            dgvMaster.Columns["Total"].DefaultCellStyle.Format = "C0";
+
+            #endregion
+        }
+
+        #endregion
+
+
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             _backupService.CreateBackup();
+        }
+
+        private void GridStyle(DataGridView grid)
+        {
+            grid.EnableHeadersVisualStyles = false;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(41, 65, 92); // azul oscuro
+            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            grid.ColumnHeadersDefaultCellStyle.Font = new Font("Century Gothic", 9.5f, FontStyle.Bold);
+            grid.ColumnHeadersHeight = 36;
+            grid.RowTemplate.Height = 30;
+            grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
+            grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 65, 92);
+            grid.BorderStyle = BorderStyle.None;
+            grid.GridColor = Color.FromArgb(230, 230, 230);
+        }
+
+        private void txtBarCodeSale_Leave(object sender, EventArgs e)
+        {
+            txtBarCodeSale.Focus();
         }
     }
 }

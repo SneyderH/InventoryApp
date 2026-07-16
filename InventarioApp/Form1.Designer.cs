@@ -30,6 +30,10 @@ namespace InventarioApp
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabInventory = new TabPage();
             dgvProducts = new DataGridView();
@@ -82,10 +86,11 @@ namespace InventarioApp
             tabControl1.Controls.Add(tabVenta);
             tabControl1.Controls.Add(tabHistory);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Location = new Point(15, 15);
+            tabControl1.Margin = new Padding(4, 3, 4, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1427, 517);
+            tabControl1.Size = new Size(1754, 513);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
@@ -93,10 +98,11 @@ namespace InventarioApp
             // 
             tabInventory.Controls.Add(dgvProducts);
             tabInventory.Controls.Add(panel1);
-            tabInventory.Location = new Point(4, 29);
+            tabInventory.Location = new Point(4, 30);
+            tabInventory.Margin = new Padding(4, 3, 4, 3);
             tabInventory.Name = "tabInventory";
-            tabInventory.Padding = new Padding(3);
-            tabInventory.Size = new Size(1419, 484);
+            tabInventory.Padding = new Padding(4, 3, 4, 3);
+            tabInventory.Size = new Size(1746, 479);
             tabInventory.TabIndex = 0;
             tabInventory.Text = "Inventario";
             tabInventory.UseVisualStyleBackColor = true;
@@ -104,17 +110,20 @@ namespace InventarioApp
             // dgvProducts
             // 
             dgvProducts.AllowUserToAddRows = false;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(224, 224, 224);
+            dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.Dock = DockStyle.Fill;
-            dgvProducts.Location = new Point(3, 116);
+            dgvProducts.Location = new Point(4, 122);
+            dgvProducts.Margin = new Padding(4, 3, 4, 3);
             dgvProducts.MultiSelect = false;
             dgvProducts.Name = "dgvProducts";
             dgvProducts.ReadOnly = true;
             dgvProducts.RowHeadersWidth = 51;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProducts.Size = new Size(1413, 365);
+            dgvProducts.Size = new Size(1738, 354);
             dgvProducts.TabIndex = 0;
             // 
             // panel1
@@ -125,59 +134,66 @@ namespace InventarioApp
             panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(btnEdit);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(4, 3);
+            panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1413, 113);
+            panel1.Size = new Size(1738, 119);
             panel1.TabIndex = 5;
             // 
             // lblFilter
             // 
             lblFilter.Anchor = AnchorStyles.Right;
             lblFilter.AutoSize = true;
-            lblFilter.Location = new Point(1176, 15);
+            lblFilter.Location = new Point(1441, 16);
+            lblFilter.Margin = new Padding(4, 0, 4, 0);
             lblFilter.Name = "lblFilter";
-            lblFilter.Size = new Size(52, 20);
+            lblFilter.Size = new Size(65, 21);
             lblFilter.TabIndex = 5;
             lblFilter.Text = "Buscar";
             // 
             // txtSearch
             // 
             txtSearch.Anchor = AnchorStyles.Right;
-            txtSearch.Location = new Point(1104, 41);
-            txtSearch.Margin = new Padding(5);
+            txtSearch.Location = new Point(1351, 43);
+            txtSearch.Margin = new Padding(6, 5, 6, 5);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(197, 27);
+            txtSearch.Size = new Size(245, 28);
             txtSearch.TabIndex = 4;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // btnAdd
             // 
             btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAdd.Location = new Point(120, 22);
+            btnAdd.BackColor = Color.DeepSkyBlue;
+            btnAdd.Location = new Point(150, 23);
+            btnAdd.Margin = new Padding(4, 3, 4, 3);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(168, 65);
+            btnAdd.Size = new Size(210, 68);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "AGREGAR";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            btnDelete.Location = new Point(684, 22);
+            btnDelete.BackColor = Color.LightCoral;
+            btnDelete.Location = new Point(855, 23);
+            btnDelete.Margin = new Padding(4, 3, 4, 3);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(155, 65);
+            btnDelete.Size = new Size(194, 68);
             btnDelete.TabIndex = 3;
             btnDelete.Text = "ELIMINAR";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
             btnEdit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            btnEdit.Location = new Point(402, 22);
+            btnEdit.Location = new Point(503, 23);
+            btnEdit.Margin = new Padding(4, 3, 4, 3);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(163, 65);
+            btnEdit.Size = new Size(204, 68);
             btnEdit.TabIndex = 2;
             btnEdit.Text = "EDITAR";
             btnEdit.UseVisualStyleBackColor = true;
@@ -188,16 +204,18 @@ namespace InventarioApp
             tabVenta.Controls.Add(gbScannedProduct);
             tabVenta.Controls.Add(dgvShoppingCart);
             tabVenta.Controls.Add(panel2);
-            tabVenta.Location = new Point(4, 29);
+            tabVenta.Location = new Point(4, 30);
+            tabVenta.Margin = new Padding(4, 3, 4, 3);
             tabVenta.Name = "tabVenta";
-            tabVenta.Padding = new Padding(3);
-            tabVenta.Size = new Size(1419, 484);
+            tabVenta.Padding = new Padding(4, 3, 4, 3);
+            tabVenta.Size = new Size(1746, 479);
             tabVenta.TabIndex = 1;
             tabVenta.Text = "Venta";
             tabVenta.UseVisualStyleBackColor = true;
             // 
             // gbScannedProduct
             // 
+            gbScannedProduct.BackColor = Color.LightGray;
             gbScannedProduct.Controls.Add(lblStockSell);
             gbScannedProduct.Controls.Add(lblPriceSell);
             gbScannedProduct.Controls.Add(lblNameSell);
@@ -205,64 +223,78 @@ namespace InventarioApp
             gbScannedProduct.Controls.Add(lblPrice);
             gbScannedProduct.Controls.Add(lblProductName);
             gbScannedProduct.Dock = DockStyle.Top;
-            gbScannedProduct.Location = new Point(3, 3);
+            gbScannedProduct.Location = new Point(4, 3);
+            gbScannedProduct.Margin = new Padding(4, 3, 4, 3);
             gbScannedProduct.Name = "gbScannedProduct";
-            gbScannedProduct.Size = new Size(1413, 120);
+            gbScannedProduct.Padding = new Padding(4, 3, 4, 3);
+            gbScannedProduct.Size = new Size(1738, 126);
             gbScannedProduct.TabIndex = 9;
             gbScannedProduct.TabStop = false;
-            gbScannedProduct.Text = "groupBox1";
+            gbScannedProduct.Text = "Producto escaneado";
             // 
             // lblStockSell
             // 
             lblStockSell.AutoSize = true;
-            lblStockSell.Location = new Point(1305, 76);
+            lblStockSell.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStockSell.Location = new Point(1631, 80);
+            lblStockSell.Margin = new Padding(4, 0, 4, 0);
             lblStockSell.Name = "lblStockSell";
-            lblStockSell.Size = new Size(15, 20);
+            lblStockSell.Size = new Size(20, 27);
             lblStockSell.TabIndex = 5;
             lblStockSell.Text = "-";
             // 
             // lblPriceSell
             // 
             lblPriceSell.AutoSize = true;
-            lblPriceSell.Location = new Point(661, 76);
+            lblPriceSell.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPriceSell.Location = new Point(818, 80);
+            lblPriceSell.Margin = new Padding(4, 0, 4, 0);
             lblPriceSell.Name = "lblPriceSell";
-            lblPriceSell.Size = new Size(15, 20);
+            lblPriceSell.Size = new Size(20, 27);
             lblPriceSell.TabIndex = 4;
             lblPriceSell.Text = "-";
             // 
             // lblNameSell
             // 
             lblNameSell.AutoSize = true;
-            lblNameSell.Location = new Point(12, 76);
+            lblNameSell.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNameSell.Location = new Point(15, 80);
+            lblNameSell.Margin = new Padding(4, 0, 4, 0);
             lblNameSell.Name = "lblNameSell";
-            lblNameSell.Size = new Size(15, 20);
+            lblNameSell.Size = new Size(20, 27);
             lblNameSell.TabIndex = 3;
             lblNameSell.Text = "-";
             // 
             // lblStock
             // 
             lblStock.AutoSize = true;
-            lblStock.Location = new Point(1296, 40);
+            lblStock.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStock.Location = new Point(1620, 42);
+            lblStock.Margin = new Padding(4, 0, 4, 0);
             lblStock.Name = "lblStock";
-            lblStock.Size = new Size(53, 20);
+            lblStock.Size = new Size(63, 19);
             lblStock.TabIndex = 2;
             lblStock.Text = "STOCK";
             // 
             // lblPrice
             // 
             lblPrice.AutoSize = true;
-            lblPrice.Location = new Point(661, 40);
+            lblPrice.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrice.Location = new Point(826, 42);
+            lblPrice.Margin = new Padding(4, 0, 4, 0);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(58, 20);
+            lblPrice.Size = new Size(70, 19);
             lblPrice.TabIndex = 1;
             lblPrice.Text = "PRECIO";
             // 
             // lblProductName
             // 
             lblProductName.AutoSize = true;
-            lblProductName.Location = new Point(12, 40);
+            lblProductName.Font = new Font("Century Gothic", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProductName.Location = new Point(15, 42);
+            lblProductName.Margin = new Padding(4, 0, 4, 0);
             lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(180, 20);
+            lblProductName.Size = new Size(208, 19);
             lblProductName.TabIndex = 0;
             lblProductName.Text = "NOMBRE DEL PRODUCTO";
             // 
@@ -270,16 +302,20 @@ namespace InventarioApp
             // 
             dgvShoppingCart.AllowUserToAddRows = false;
             dgvShoppingCart.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle5.BackColor = Color.Silver;
+            dgvShoppingCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvShoppingCart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvShoppingCart.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvShoppingCart.BackgroundColor = SystemColors.ActiveBorder;
             dgvShoppingCart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvShoppingCart.Location = new Point(3, 129);
+            dgvShoppingCart.Location = new Point(4, 135);
+            dgvShoppingCart.Margin = new Padding(4, 3, 4, 3);
             dgvShoppingCart.Name = "dgvShoppingCart";
             dgvShoppingCart.ReadOnly = true;
             dgvShoppingCart.RowHeadersWidth = 51;
             dgvShoppingCart.ShowCellToolTips = false;
             dgvShoppingCart.ShowEditingIcon = false;
-            dgvShoppingCart.Size = new Size(1413, 119);
+            dgvShoppingCart.Size = new Size(1736, 89);
             dgvShoppingCart.TabIndex = 4;
             // 
             // panel2
@@ -291,70 +327,84 @@ namespace InventarioApp
             panel2.Controls.Add(btnCancelSale);
             panel2.Controls.Add(btnAccept);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(3, 254);
+            panel2.Location = new Point(4, 238);
+            panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1413, 227);
+            panel2.Size = new Size(1738, 238);
             panel2.TabIndex = 8;
             // 
             // btnCancelItem
             // 
             btnCancelItem.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelItem.Location = new Point(864, 171);
+            btnCancelItem.BackColor = Color.Tan;
+            btnCancelItem.Location = new Point(1051, 180);
+            btnCancelItem.Margin = new Padding(4, 3, 4, 3);
             btnCancelItem.Name = "btnCancelItem";
-            btnCancelItem.Size = new Size(166, 44);
+            btnCancelItem.Size = new Size(207, 46);
             btnCancelItem.TabIndex = 7;
             btnCancelItem.Text = "QUITAR ITEM";
-            btnCancelItem.UseVisualStyleBackColor = true;
+            btnCancelItem.UseVisualStyleBackColor = false;
             btnCancelItem.Click += btnCancelItem_Click;
             // 
             // lblTotal
             // 
             lblTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(1324, 94);
+            lblTotal.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotal.ForeColor = Color.ForestGreen;
+            lblTotal.Location = new Point(1581, 99);
+            lblTotal.Margin = new Padding(4, 0, 4, 0);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(25, 20);
+            lblTotal.Size = new Size(38, 27);
             lblTotal.TabIndex = 2;
             lblTotal.Text = "$0";
             // 
             // txtBarCodeSale
             // 
-            txtBarCodeSale.Location = new Point(12, 16);
+            txtBarCodeSale.Location = new Point(15, 17);
+            txtBarCodeSale.Margin = new Padding(4, 3, 4, 3);
             txtBarCodeSale.Name = "txtBarCodeSale";
-            txtBarCodeSale.Size = new Size(0, 27);
+            txtBarCodeSale.Size = new Size(1, 28);
             txtBarCodeSale.TabIndex = 3;
             txtBarCodeSale.KeyDown += txtBarCodeSale_KeyDown;
+            txtBarCodeSale.Leave += txtBarCodeSale_Leave;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(1314, 63);
+            label4.Font = new Font("Century Gothic", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(1589, 64);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(50, 20);
+            label4.Size = new Size(62, 22);
             label4.TabIndex = 1;
             label4.Text = "TOTAL";
             // 
             // btnCancelSale
             // 
             btnCancelSale.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelSale.Location = new Point(1059, 171);
+            btnCancelSale.BackColor = Color.Salmon;
+            btnCancelSale.Location = new Point(1295, 180);
+            btnCancelSale.Margin = new Padding(4, 3, 4, 3);
             btnCancelSale.Name = "btnCancelSale";
-            btnCancelSale.Size = new Size(154, 44);
+            btnCancelSale.Size = new Size(193, 46);
             btnCancelSale.TabIndex = 6;
             btnCancelSale.Text = "CANCELAR VENTA";
-            btnCancelSale.UseVisualStyleBackColor = true;
+            btnCancelSale.UseVisualStyleBackColor = false;
             btnCancelSale.Click += btnCancelSale_Click;
             // 
             // btnAccept
             // 
             btnAccept.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAccept.Location = new Point(1239, 171);
+            btnAccept.BackColor = Color.Lime;
+            btnAccept.Location = new Point(1520, 180);
+            btnAccept.Margin = new Padding(4, 3, 4, 3);
             btnAccept.Name = "btnAccept";
-            btnAccept.Size = new Size(158, 44);
+            btnAccept.Size = new Size(197, 46);
             btnAccept.TabIndex = 5;
             btnAccept.Text = "ACEPTAR";
-            btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.UseVisualStyleBackColor = false;
             btnAccept.Click += btnAccept_Click;
             // 
             // tabHistory
@@ -363,9 +413,10 @@ namespace InventarioApp
             tabHistory.Controls.Add(panel3);
             tabHistory.Controls.Add(dgvMaster);
             tabHistory.Location = new Point(4, 29);
+            tabHistory.Margin = new Padding(4, 3, 4, 3);
             tabHistory.Name = "tabHistory";
-            tabHistory.Padding = new Padding(3);
-            tabHistory.Size = new Size(1419, 484);
+            tabHistory.Padding = new Padding(4, 3, 4, 3);
+            tabHistory.Size = new Size(1746, 480);
             tabHistory.TabIndex = 2;
             tabHistory.Text = "Histórico de Ventas";
             tabHistory.UseVisualStyleBackColor = true;
@@ -374,17 +425,20 @@ namespace InventarioApp
             // 
             dgvDetails.AllowUserToAddRows = false;
             dgvDetails.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(224, 224, 224);
+            dgvDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             dgvDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDetails.Dock = DockStyle.Fill;
-            dgvDetails.Location = new Point(3, 200);
+            dgvDetails.Location = new Point(4, 146);
+            dgvDetails.Margin = new Padding(4, 3, 4, 3);
             dgvDetails.Name = "dgvDetails";
             dgvDetails.ReadOnly = true;
             dgvDetails.RowHeadersWidth = 51;
             dgvDetails.ShowCellToolTips = false;
             dgvDetails.ShowEditingIcon = false;
-            dgvDetails.Size = new Size(1413, 156);
+            dgvDetails.Size = new Size(1738, 200);
             dgvDetails.TabIndex = 2;
             // 
             // panel3
@@ -393,66 +447,81 @@ namespace InventarioApp
             panel3.Controls.Add(label1);
             panel3.Controls.Add(btnRegisterClosing);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(3, 356);
+            panel3.Location = new Point(4, 346);
+            panel3.Margin = new Padding(4, 3, 4, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1413, 125);
+            panel3.Size = new Size(1738, 131);
             panel3.TabIndex = 1;
             // 
             // lblTotalClosing
             // 
             lblTotalClosing.AutoSize = true;
-            lblTotalClosing.Location = new Point(66, 76);
+            lblTotalClosing.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotalClosing.ForeColor = Color.LimeGreen;
+            lblTotalClosing.Location = new Point(55, 80);
+            lblTotalClosing.Margin = new Padding(4, 0, 4, 0);
             lblTotalClosing.Name = "lblTotalClosing";
-            lblTotalClosing.Size = new Size(15, 20);
+            lblTotalClosing.Size = new Size(20, 27);
             lblTotalClosing.TabIndex = 2;
             lblTotalClosing.Text = "-";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(33, 40);
+            label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(41, 42);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(92, 20);
+            label1.Size = new Size(129, 23);
             label1.TabIndex = 1;
             label1.Text = "Total del día";
             // 
             // btnRegisterClosing
             // 
             btnRegisterClosing.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnRegisterClosing.Location = new Point(1168, 40);
+            btnRegisterClosing.BackColor = Color.Beige;
+            btnRegisterClosing.ForeColor = SystemColors.ControlText;
+            btnRegisterClosing.Location = new Point(1431, 42);
+            btnRegisterClosing.Margin = new Padding(4, 3, 4, 3);
             btnRegisterClosing.Name = "btnRegisterClosing";
-            btnRegisterClosing.Size = new Size(224, 56);
+            btnRegisterClosing.Size = new Size(280, 59);
             btnRegisterClosing.TabIndex = 0;
             btnRegisterClosing.Text = "CIERRE DE CAJA";
-            btnRegisterClosing.UseVisualStyleBackColor = true;
+            btnRegisterClosing.UseVisualStyleBackColor = false;
             btnRegisterClosing.Click += btnRegisterClosing_Click;
             // 
             // dgvMaster
             // 
             dgvMaster.AllowUserToAddRows = false;
             dgvMaster.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(224, 224, 224);
+            dgvMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvMaster.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMaster.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvMaster.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMaster.Dock = DockStyle.Top;
-            dgvMaster.Location = new Point(3, 3);
+            dgvMaster.Location = new Point(4, 3);
+            dgvMaster.Margin = new Padding(4, 3, 4, 3);
             dgvMaster.Name = "dgvMaster";
             dgvMaster.ReadOnly = true;
             dgvMaster.RowHeadersWidth = 51;
             dgvMaster.ShowCellToolTips = false;
             dgvMaster.ShowEditingIcon = false;
-            dgvMaster.Size = new Size(1413, 197);
+            dgvMaster.Size = new Size(1738, 143);
             dgvMaster.TabIndex = 0;
             dgvMaster.SelectionChanged += dgvMaster_SelectionChanged;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1427, 517);
+            ClientSize = new Size(1784, 543);
             Controls.Add(tabControl1);
+            Font = new Font("Century Gothic", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             KeyPreview = true;
+            Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
+            Padding = new Padding(15);
             Text = "Sistema de Inventario";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
