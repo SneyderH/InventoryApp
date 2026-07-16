@@ -27,7 +27,7 @@ namespace InventarioApp.Data
         {
             modelBuilder.Entity<Product>()
                 .HasIndex(p => p.BarCode)
-                .IsUnique(); //Evita codigos de barras duplicados en la base de datos.
+                .IsUnique();
 
             modelBuilder.Entity<Sale>()
                 .HasOne(v => v.Product)

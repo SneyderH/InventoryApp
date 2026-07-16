@@ -35,7 +35,7 @@ namespace InventarioApp
             LoadProducts();
         }
 
-        #region INVENTORY
+        #region INVENTARIO
         private void LoadProducts(string filter = "")
         {
             var products = string.IsNullOrEmpty(filter)
@@ -132,7 +132,7 @@ namespace InventarioApp
         }
         #endregion
 
-        #region SALES
+        #region VENTAS
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             tabVenta.Enabled = tabControl1.SelectedIndex == 1;
@@ -190,6 +190,11 @@ namespace InventarioApp
                 MessageBox.Show("Producto no encontrado.");
                 txtBarCodeSale.Focus();
             }
+        }
+
+        private void txtBarCodeSale_Leave(object sender, EventArgs e)
+        {
+            txtBarCodeSale.Focus();
         }
 
         private void ShoppingCartRefresh()
@@ -411,11 +416,6 @@ namespace InventarioApp
             grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 65, 92);
             grid.BorderStyle = BorderStyle.None;
             grid.GridColor = Color.FromArgb(230, 230, 230);
-        }
-
-        private void txtBarCodeSale_Leave(object sender, EventArgs e)
-        {
-            txtBarCodeSale.Focus();
         }
     }
 }

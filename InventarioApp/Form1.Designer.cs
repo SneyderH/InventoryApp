@@ -30,10 +30,10 @@ namespace InventarioApp
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             tabInventory = new TabPage();
             dgvProducts = new DataGridView();
@@ -110,8 +110,8 @@ namespace InventarioApp
             // dgvProducts
             // 
             dgvProducts.AllowUserToAddRows = false;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(224, 224, 224);
-            dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            dgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -302,8 +302,8 @@ namespace InventarioApp
             // 
             dgvShoppingCart.AllowUserToAddRows = false;
             dgvShoppingCart.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.Silver;
-            dgvShoppingCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dgvShoppingCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvShoppingCart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvShoppingCart.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvShoppingCart.BackgroundColor = SystemColors.ActiveBorder;
@@ -315,7 +315,7 @@ namespace InventarioApp
             dgvShoppingCart.RowHeadersWidth = 51;
             dgvShoppingCart.ShowCellToolTips = false;
             dgvShoppingCart.ShowEditingIcon = false;
-            dgvShoppingCart.Size = new Size(1736, 89);
+            dgvShoppingCart.Size = new Size(1736, 83);
             dgvShoppingCart.TabIndex = 4;
             // 
             // panel2
@@ -425,8 +425,8 @@ namespace InventarioApp
             // 
             dgvDetails.AllowUserToAddRows = false;
             dgvDetails.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(224, 224, 224);
-            dgvDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(224, 224, 224);
+            dgvDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             dgvDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDetails.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -494,8 +494,8 @@ namespace InventarioApp
             // 
             dgvMaster.AllowUserToAddRows = false;
             dgvMaster.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(224, 224, 224);
-            dgvMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(224, 224, 224);
+            dgvMaster.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvMaster.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMaster.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvMaster.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
