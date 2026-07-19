@@ -315,7 +315,7 @@ namespace InventarioApp
             dgvShoppingCart.RowHeadersWidth = 51;
             dgvShoppingCart.ShowCellToolTips = false;
             dgvShoppingCart.ShowEditingIcon = false;
-            dgvShoppingCart.Size = new Size(1736, 83);
+            dgvShoppingCart.Size = new Size(1736, 80);
             dgvShoppingCart.TabIndex = 4;
             // 
             // panel2

@@ -112,7 +112,7 @@ namespace InventarioApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvProducts.CurrentRow.DataBoundItem is not Product selected)
+            if (dgvProducts.CurrentRow?.DataBoundItem is not Product selected)
             {
                 MessageBox.Show("Selecciona un producto para eliminar.");
                 return;
